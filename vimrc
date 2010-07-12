@@ -76,3 +76,9 @@ map <leader>tm :tabmove
 
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 "autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+
+set cursorline
+
+" Python setup
+autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd FileType python set omnifunc=pythoncomplete#Complete
