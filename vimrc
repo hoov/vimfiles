@@ -37,6 +37,10 @@ set nobackup                      " Don't make a backup before overwriting a fil
 set nowritebackup                 " And again.
 set directory=$HOME/.vim/tmp//,.  " Keep swap files in one location
 
+set foldcolumn=1                  " Show the pretty fold column on the left.
+set foldlevel=100                 " Don't fold automaticallhy, but let me do it when I want.
+set cursorline                    " Hilight the current line
+
 " UNCOMMENT TO USE
 "set tabstop=2                    " Global tab width.
 "set shiftwidth=2                 " And again, related.
@@ -77,8 +81,8 @@ map <leader>tm :tabmove
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 "autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
-set cursorline
+
 
 " Python setup
-autocmd FileType python setlocal shiftwidth=4 tabstop=4
-autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
+
