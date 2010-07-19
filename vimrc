@@ -52,6 +52,7 @@ set laststatus=2                  " Show the status line all the time
 
 " Or use vividchalk
 "colorscheme topfunky-light
+colorscheme ir_black 
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
@@ -81,8 +82,18 @@ map <leader>tm :tabmove
 " For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
 "autocmd BufNewFile,BufRead *_spec.rb compiler rspec
 
-
+" taglist setup
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Auto_Open = 1
 
 " Python setup
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
 
+python << EOF
+import os
+import sys
+import vim
+for p in sys.path:
+    if os.path.isdir(p):
+        vim.command(r"set path+=%s" % p.replace(" ", r"\ "))
+EOF
