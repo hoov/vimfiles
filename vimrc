@@ -48,7 +48,7 @@ set cursorline                    " Hilight the current line
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
-"set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 " Or use vividchalk
 "colorscheme topfunky-light
@@ -84,9 +84,11 @@ map <leader>tm :tabmove
 
 " taglist setup
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-let Tlist_Auto_Open = 1
+"let Tlist_Auto_Open = 1
 
 " Python setup
+let python_highlight_all = 1
+let python_space_errors = 1
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
 
 python << EOF
@@ -97,3 +99,9 @@ for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % p.replace(" ", r"\ "))
 EOF
+
+" Cucumber setup
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType cucumber setlocal shiftwidth=2 tabstop=2 expandtab
+
+
