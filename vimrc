@@ -101,7 +101,7 @@ for p in sys.path:
 EOF
 
 " Cucumber setup
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab foldmethod=syntax
 autocmd FileType cucumber setlocal shiftwidth=2 tabstop=2 expandtab
 
 
