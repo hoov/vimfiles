@@ -42,9 +42,9 @@ set foldlevel=100                 " Don't fold automaticallhy, but let me do it 
 set cursorline                    " Hilight the current line
 
 " UNCOMMENT TO USE
-"set tabstop=2                    " Global tab width.
-"set shiftwidth=2                 " And again, related.
-"set expandtab                    " Use spaces instead of tabs
+set tabstop=4                     " Global tab width.
+set shiftwidth=4                  " And again, related.
+set expandtab                     " Use spaces instead of tabs
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -64,6 +64,15 @@ map <leader>tp :tabprevious<cr>
 map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
+
+
+" NERDTree configuration
+let NERDTreeIgnore=['\.rbc$', '\~$']
+map <leader>n :NERDTreeToggle<cr>
+
+" Opens an edit command with the path of the currently edited file filled in
+" Normal mode: <Leader>e
+map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
 
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
