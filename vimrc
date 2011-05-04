@@ -95,6 +95,11 @@ map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 "let Tlist_Auto_Open = 1
 
+" minibufexpl
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
 " Python setup
 let python_highlight_all = 1
 let python_space_errors = 1
