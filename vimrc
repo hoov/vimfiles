@@ -1,5 +1,7 @@
 set nocompatible                  " Must come first because it changes other options.
 
+let mapleader=","
+
 filetype off
 silent! call pathogen#runtime_append_all_bundles()
 silent! call pathogen#helptags()
@@ -14,6 +16,9 @@ set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 
 set backspace=indent,eol,start    " Intuitive backspacing.
+
+set showmatch                     " Briefly jump to a paren once its balanced
+set matchtime=2                   " (for only .2 seconds)
 
 set hidden                        " Handle multiple buffers better.
 
@@ -69,9 +74,21 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
+" ,v brings up my .vimrc
+" ,V reloads it -- making all changes active (have to save first)
+map <leader>v :sp ~/.vimrc<CR><C-W>_
+map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+
+" open/close the quickfix window
+nmap <leader>c :copen<CR>
+nmap <leader>cc :cclose<CR>
+
 " pep8
 let g:pep8_map='<leader>8'
 
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
 
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
@@ -81,15 +98,9 @@ map <leader>n :NERDTreeToggle<cr>
 " Normal mode: <Leader>e
 map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
 
-" Uncomment to use Jamis Buck's file opening plugin
-"map <Leader>t :FuzzyFinderTextMate<Enter>
-
-" Automatic fold settings for specific files. Uncomment to use.
-" autocmd FileType ruby setlocal foldmethod=syntax
-" autocmd FileType css  setlocal foldmethod=indent shiftwidth=2 tabstop=2
-
-" For the MakeGreen plugin and Ruby RSpec. Uncomment to use.
-"autocmd BufNewFile,BufRead *_spec.rb compiler rspec
+" Ack
+map <Leader>a <Esc>:Ack!<CR>
+map <Leader>A <Esc>:Ack!
 
 " taglist setup
 let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'

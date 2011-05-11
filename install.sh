@@ -1,13 +1,17 @@
 #!/bin/zsh
 
 for f in gvimrc vimrc; do
-    ln -sf `pwd`/$f ~/.$f
+    ln -sfhv $PWD/$f $HOME/.$f
 done
 
-if [[ ! -e ~/.vim ]]; then
-  mkdir -p ~/.vim
+if [[ ! -e $HOME/.vim ]]; then
+  mkdir -p $HOME/.vim
 fi
 
 for f in autoload bundle colors indent syntax; do
-    ln -sf `pwd`/$f ~/.vim/$f
+    ln -sfhv $PWD/$f $HOME/.vim/$f
 done
+
+pushd bundle/Command-T
+rake make
+popd
