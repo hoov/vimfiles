@@ -1,8 +1,11 @@
 set nocompatible                  " Must come first because it changes other options.
 
+filetype off
 silent! call pathogen#runtime_append_all_bundles()
+silent! call pathogen#helptags()
 
 syntax enable                     " Turn on syntax highlighting.
+filetype on
 filetype plugin indent on         " Turn on file type detection.
 
 runtime macros/matchit.vim        " Load the matchit plugin.
@@ -16,6 +19,8 @@ set hidden                        " Handle multiple buffers better.
 
 set wildmenu                      " Enhanced command line completion.
 set wildmode=list:longest         " Complete files like a shell.
+" wildmenu ignores
+set wildignore+=*.o,*.obj,.git,*.pyc
 
 set ignorecase                    " Case-insensitive searching.
 set smartcase                     " But case-sensitive if expression contains a capital letter.
@@ -41,7 +46,6 @@ set foldcolumn=1                  " Show the pretty fold column on the left.
 set foldlevel=100                 " Don't fold automaticallhy, but let me do it when I want.
 set cursorline                    " Hilight the current line
 
-" UNCOMMENT TO USE
 set tabstop=4                     " Global tab width.
 set shiftwidth=4                  " And again, related.
 set expandtab                     " Use spaces instead of tabs
@@ -65,6 +69,9 @@ map <leader>tf :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tm :tabmove
 
+" pep8
+let g:pep8_map='<leader>8'
+
 
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
@@ -76,13 +83,6 @@ map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
 
 " Uncomment to use Jamis Buck's file opening plugin
 "map <Leader>t :FuzzyFinderTextMate<Enter>
-
-" Controversial...swap colon and semicolon for easier commands
-"nnoremap ; :
-"nnoremap : ;
-
-"vnoremap ; :
-"vnoremap : ;
 
 " Automatic fold settings for specific files. Uncomment to use.
 " autocmd FileType ruby setlocal foldmethod=syntax
@@ -103,7 +103,7 @@ let g:miniBufExplModSelTarget = 1
 " Python setup
 let python_highlight_all = 1
 let python_space_errors = 1
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
 
 python << EOF
 import os
