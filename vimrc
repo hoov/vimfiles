@@ -83,6 +83,21 @@ map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimr
 nmap <leader>c :copen<CR>
 nmap <leader>cc :cclose<CR>
 
+" Don't let pyflakes use the quickfix window
+let g:pyflakes_use_quickfix = 0
+
+" turn of hlsearch and update pyflakes on enter
+au BufRead,BufNewFile *.py nnoremap <buffer><CR> :nohlsearch\|:call PressedEnter()<cr>
+nnoremap <buffer><CR> :nohlsearch\|:call PressedEnter()<cr>
+
+" clear the search buffer when hitting return and update pyflakes checks
+function! PressedEnter()
+    :nohlsearch
+    if &filetype == 'python'
+        :PyflakesUpdate
+    end
+endfunction
+
 " pep8
 let g:pep8_map='<leader>8'
 
