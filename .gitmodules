@@ -40,3 +40,6 @@
 [submodule "bundle/pyflakes-vim"]
 	path = bundle/pyflakes-vim
 	url = git://github.com/kevinw/pyflakes-vim
+[submodule "bundle/rope-vim"]
+	path = bundle/rope-vim
+	url = git://github.com/sontek/rope-vim

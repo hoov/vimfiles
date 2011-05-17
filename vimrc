@@ -131,6 +131,9 @@ let python_highlight_all = 1
 let python_space_errors = 1
 autocmd FileType python setlocal expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
 
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
+
 python << EOF
 import os
 import sys
