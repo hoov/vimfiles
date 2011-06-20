@@ -54,6 +54,7 @@ set cursorline                    " Hilight the current line
 set tabstop=4                     " Global tab width.
 set shiftwidth=4                  " And again, related.
 set expandtab                     " Use spaces instead of tabs
+set autoindent
 
 set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
@@ -108,6 +109,7 @@ set completeopt=menuone,longest,preview
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <leader>n :NERDTreeToggle<cr>
+let NERDTreeQuitOnOpen=1
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
