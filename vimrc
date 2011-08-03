@@ -149,4 +149,9 @@ EOF
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab foldmethod=syntax
 autocmd FileType cucumber setlocal shiftwidth=2 tabstop=2 expandtab
 
+" Java
+let g:java_highlight_all=1
+let g:java_space_errors=1
+let g:java_highlight_debug=1
+
 

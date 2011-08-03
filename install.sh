@@ -8,7 +8,7 @@ if [[ ! -e $HOME/.vim ]]; then
   mkdir -p $HOME/.vim
 fi
 
-for f in autoload bundle colors indent syntax; do
+for f in autoload bundle colors compiler indent syntax; do
     ln -sfhv $PWD/$f $HOME/.vim/$f
 done
 
