@@ -131,15 +131,27 @@ let g:miniBufExplModSelTarget = 1
 " Python setup
 let python_highlight_all = 1
 let python_space_errors = 1
-autocmd FileType python setlocal expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab autoindent foldmethod=indent "omnifunc=pythoncomplete#Complete
 
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
+
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback"]
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 python << EOF
 import os
 import sys
 import vim
+
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % p.replace(" ", r"\ "))
