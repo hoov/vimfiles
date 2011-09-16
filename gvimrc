@@ -7,4 +7,7 @@ end
 
 set antialias
 set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
 set encoding=utf-8

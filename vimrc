@@ -79,7 +79,7 @@ map <leader>tm :tabmove
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
-map <leader>v :sp ~/.vimrc<CR><C-W>_
+map <leader>v :e ~/.vimrc<CR><C-W>_
 map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " open/close the quickfix window
@@ -111,7 +111,7 @@ set completeopt=menuone,longest,preview
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <leader>n :NERDTreeToggle<cr>
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
