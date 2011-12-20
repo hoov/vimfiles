@@ -52,3 +52,6 @@
 [submodule "bundle/vim-bundler"]
 	path = bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
+[submodule "bundle/capslock.vim"]
+	path = bundle/capslock.vim
+	url = git://github.com/vim-scripts/capslock.vim.git
