@@ -60,6 +60,8 @@ set laststatus=2                  " Show the status line all the time
 " Useful status information at bottom of screen
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
+set tags=./tags,tags,~/.extra_tags/java.tags
+
 " Or use vividchalk
 "colorscheme topfunky-light
 colorscheme ir_black 
@@ -77,8 +79,13 @@ map <leader>tm :tabmove
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
-map <leader>v :sp ~/.vimrc<CR><C-W>_
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+if has('win32') || has('win64')
+    map <leader>v :e ~/_vimrc<CR><C-W>_
+    map <silent> <leader>V :source ~/_vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+else
+    map <leader>v :e ~/.vimrc<CR><C-W>_
+    map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+endif
 
 " open/close the quickfix window
 nmap <leader>c :copen<CR>
@@ -113,15 +120,28 @@ let NERDTreeQuitOnOpen=1
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
-map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
+if has('win32') || has('win64')
+    map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
+else
+    map <leader>e :e <C-R>=expand("%:p:h") . "\" <cr>
+endif
 
 " Ack
 map <Leader>a <Esc>:Ack!<CR>
 map <Leader>A <Esc>:Ack!
 
 " taglist setup
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-"let Tlist_Auto_Open = 1
+if has('win32') || has('win64')
+    let Tlist_Ctags_Cmd = 'ctags.exe'
+else
+    let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+endif
+map <leader>T :TlistToggle<CR>
+let g:Tlist_Close_On_Select = 1
+let g:Tlist_Exit_OnlyWindow = 1
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:Tlist_Use_Right_Window = 1
+let g:Tlist_WinWidth = 50
 
 " minibufexpl
 let g:miniBufExplMapWindowNavVim = 1
