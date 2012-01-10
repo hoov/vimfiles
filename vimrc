@@ -56,9 +56,29 @@ set shiftwidth=4                  " And again, related.
 set expandtab                     " Use spaces instead of tabs
 set autoindent
 
+set clipboard=unnamed
+
 set laststatus=2                  " Show the status line all the time
+"
 " Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline=
+set statusline+=[%-3.3n]\                     " buffer number
+set statusline+=%<%.99f\                      " filename
+set statusline+=[%{strlen(&ft)?&ft:'none'},   " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc},  " encoding
+set statusline+=%{&fileformat}]               " file format
+set statusline+=%h                            " help file flag
+set statusline+=%m                            " modified flag
+set statusline+=%w                            " preview flag
+set statusline+=%r\                           " read only flag
+set statusline+=%{fugitive#statusline()}\     " git status
+if !has("windows")
+    set statusline+=%{rvm#statusline()}\      " rvm info
+end
+set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''} " caps lock
+set statusline+=%=                            " right align
+set statusline+=%-14.(%l/%L,%c%V%)\           " location
+set statusline+=%P                            " percentage of file
 
 set tags=./tags,tags,~/.extra_tags/java.tags
 
@@ -116,7 +136,7 @@ set completeopt=menuone,longest,preview
 " NERDTree configuration
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <leader>n :NERDTreeToggle<cr>
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -151,15 +171,27 @@ let g:miniBufExplModSelTarget = 1
 " Python setup
 let python_highlight_all = 1
 let python_space_errors = 1
-autocmd FileType python setlocal expandtab autoindent foldmethod=indent omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab autoindent foldmethod=indent "omnifunc=pythoncomplete#Complete
 
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
+
+let ropevim_vim_completion = 1
+let ropevim_extended_complete = 1
+let g:ropevim_autoimport_modules = ["os.*","traceback"]
+imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
 
 python << EOF
 import os
 import sys
 import vim
+
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+
 for p in sys.path:
     if os.path.isdir(p):
         vim.command(r"set path+=%s" % p.replace(" ", r"\ "))
@@ -168,5 +200,10 @@ EOF
 " Cucumber setup
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2 expandtab foldmethod=syntax
 autocmd FileType cucumber setlocal shiftwidth=2 tabstop=2 expandtab
+
+" Java
+let g:java_highlight_all=1
+let g:java_space_errors=1
+let g:java_highlight_debug=1
 
 

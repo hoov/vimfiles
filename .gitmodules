@@ -43,3 +43,15 @@
 [submodule "bundle/rope-vim"]
 	path = bundle/rope-vim
 	url = git://github.com/sontek/rope-vim
+[submodule "bundle/coveragepy.vim"]
+	path = bundle/coveragepy.vim
+	url = https://github.com/alfredodeza/coveragepy.vim.git
+[submodule "bundle/vim-rvm"]
+	path = bundle/vim-rvm
+	url = git://github.com/tpope/vim-rvm.git
+[submodule "bundle/vim-bundler"]
+	path = bundle/vim-bundler
+	url = git://github.com/tpope/vim-bundler.git
+[submodule "bundle/capslock.vim"]
+	path = bundle/capslock.vim
+	url = git://github.com/vim-scripts/capslock.vim.git
