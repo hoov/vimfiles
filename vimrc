@@ -72,7 +72,9 @@ set statusline+=%m                            " modified flag
 set statusline+=%w                            " preview flag
 set statusline+=%r\                           " read only flag
 set statusline+=%{fugitive#statusline()}\     " git status
-set statusline+=%{rvm#statusline()}\          " rvm info
+if !has("windows")
+    set statusline+=%{rvm#statusline()}\      " rvm info
+end
 set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''} " caps lock
 set statusline+=%=                            " right align
 set statusline+=%-14.(%l/%L,%c%V%)\           " location
