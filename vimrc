@@ -59,8 +59,24 @@ set autoindent
 set clipboard=unnamed
 
 set laststatus=2                  " Show the status line all the time
+"
 " Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}\ %{rvm#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline=
+set statusline+=[%-3.3n]\                     " buffer number
+set statusline+=%<%.99f\                      " filename
+set statusline+=[%{strlen(&ft)?&ft:'none'},   " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc},  " encoding
+set statusline+=%{&fileformat}]               " file format
+set statusline+=%h                            " help file flag
+set statusline+=%m                            " modified flag
+set statusline+=%w                            " preview flag
+set statusline+=%r\                           " read only flag
+set statusline+=%{fugitive#statusline()}\     " git status
+set statusline+=%{rvm#statusline()}\          " rvm info
+set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''} " caps lock
+set statusline+=%=                            " right align
+set statusline+=%-14.(%l/%L,%c%V%)\           " location
+set statusline+=%P                            " percentage of file
 
 " Or use vividchalk
 "colorscheme topfunky-light
