@@ -59,8 +59,28 @@ set autoindent
 set clipboard=unnamed
 
 set laststatus=2                  " Show the status line all the time
+"
 " Useful status information at bottom of screen
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}\ %{rvm#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline=
+set statusline+=[%-3.3n]\                     " buffer number
+set statusline+=%<%.99f\                      " filename
+set statusline+=[%{strlen(&ft)?&ft:'none'},   " filetype
+set statusline+=%{strlen(&fenc)?&fenc:&enc},  " encoding
+set statusline+=%{&fileformat}]               " file format
+set statusline+=%h                            " help file flag
+set statusline+=%m                            " modified flag
+set statusline+=%w                            " preview flag
+set statusline+=%r\                           " read only flag
+set statusline+=%{fugitive#statusline()}\     " git status
+if !has("windows")
+    set statusline+=%{rvm#statusline()}\      " rvm info
+end
+set statusline+=%{exists('*CapsLockStatusline')?CapsLockStatusline():''} " caps lock
+set statusline+=%=                            " right align
+set statusline+=%-14.(%l/%L,%c%V%)\           " location
+set statusline+=%P                            " percentage of file
+
+set tags=./tags,tags,~/.extra_tags/java.tags
 
 " Or use vividchalk
 "colorscheme topfunky-light
@@ -79,8 +99,13 @@ map <leader>tm :tabmove
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
-map <leader>v :e ~/.vimrc<CR><C-W>_
-map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+if has('win32') || has('win64')
+    map <leader>v :e ~/_vimrc<CR><C-W>_
+    map <silent> <leader>V :source ~/_vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+else
+    map <leader>v :e ~/.vimrc<CR><C-W>_
+    map <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
+endif
 
 " open/close the quickfix window
 nmap <leader>c :copen<CR>
@@ -115,15 +140,28 @@ let NERDTreeQuitOnOpen=0
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
-map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
+if has('win32') || has('win64')
+    map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
+else
+    map <leader>e :e <C-R>=expand("%:p:h") . "\" <cr>
+endif
 
 " Ack
 map <Leader>a <Esc>:Ack!<CR>
 map <Leader>A <Esc>:Ack!
 
 " taglist setup
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-"let Tlist_Auto_Open = 1
+if has('win32') || has('win64')
+    let Tlist_Ctags_Cmd = 'ctags.exe'
+else
+    let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+endif
+map <leader>T :TlistToggle<CR>
+let g:Tlist_Close_On_Select = 1
+let g:Tlist_Exit_OnlyWindow = 1
+let g:Tlist_GainFocus_On_ToggleOpen = 1
+let g:Tlist_Use_Right_Window = 1
+let g:Tlist_WinWidth = 50
 
 " minibufexpl
 let g:miniBufExplMapWindowNavVim = 1
@@ -148,10 +186,13 @@ import os
 import sys
 import vim
 
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
+if "VIRTUAL_ENV" in os.environ:
+    project_base_dir = os.environ["VIRTUAL_ENV"]
     sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    bindir = "Scripts" if sys.platform.startswith("win") else "bin"
+
+    activate_this = os.path.join(project_base_dir, bindir, "activate_this.py")
+
     execfile(activate_this, dict(__file__=activate_this))
 
 for p in sys.path:
