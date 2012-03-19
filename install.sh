@@ -1,7 +1,7 @@
-#!/bin/zsh
+#!/bin/env zsh
 
 for f in gvimrc vimrc; do
-    ln -sfhv $PWD/$f $HOME/.$f
+    ln -sfv $PWD/$f $HOME/.$f
 done
 
 if [[ ! -e $HOME/.vim ]]; then
@@ -9,7 +9,7 @@ if [[ ! -e $HOME/.vim ]]; then
 fi
 
 for f in autoload bundle colors compiler indent syntax; do
-    ln -sfhv $PWD/$f $HOME/.vim/$f
+    ln -sfv $PWD/$f $HOME/.vim/$f
 done
 
 pushd bundle/Command-T
