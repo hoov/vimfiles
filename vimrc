@@ -141,9 +141,9 @@ let NERDTreeQuitOnOpen=0
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
 if has('win32') || has('win64')
-    map <leader>e :e <C-R>=expand("%:p:h") . "/" <cr>
+    map <leader>e :e <C-R>=expand("%:p:h") . '\' <cr>
 else
-    map <leader>e :e <C-R>=expand("%:p:h") . "\" <cr>
+    map <leader>e :e <C-R>=expand("%:p:h") . '/' <cr>
 endif
 
 " Ack
