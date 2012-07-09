@@ -111,6 +111,8 @@ endif
 nmap <leader>c :copen<CR>
 nmap <leader>cc :cclose<CR>
 
+let g:Powerline_symbols = 'fancy'
+
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
 
