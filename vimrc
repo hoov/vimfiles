@@ -82,9 +82,7 @@ set statusline+=%P                            " percentage of file
 
 set tags=./tags,tags,~/.extra_tags/java.tags
 
-" Or use vividchalk
-"colorscheme topfunky-light
-colorscheme ir_black 
+colorscheme jellybeans
 
 " Tab mappings.
 map <leader>tt :tabnew<cr>
