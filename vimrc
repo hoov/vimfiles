@@ -111,6 +111,12 @@ nmap <leader>cc :cclose<CR>
 
 let g:Powerline_symbols = 'fancy'
 
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
 " Don't let pyflakes use the quickfix window
 let g:pyflakes_use_quickfix = 0
 
@@ -171,7 +177,7 @@ let g:miniBufExplModSelTarget = 1
 " Python setup
 let python_highlight_all = 1
 let python_space_errors = 1
-autocmd FileType python setlocal expandtab autoindent foldmethod=indent "omnifunc=pythoncomplete#Complete
+autocmd FileType python setlocal expandtab autoindent foldmethod=indent shiftwidth=4 softtabstop=4 "omnifunc=pythoncomplete#Complete
 
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
