@@ -3,8 +3,7 @@ set nocompatible                  " Must come first because it changes other opt
 let mapleader=","
 
 filetype off
-silent! call pathogen#runtime_append_all_bundles()
-silent! call pathogen#helptags()
+execute pathogen#infect()
 
 syntax enable                     " Turn on syntax highlighting.
 filetype on
