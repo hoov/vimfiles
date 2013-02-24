@@ -1,4 +1,4 @@
-#!/bin/env zsh
+#!/usr/bin/env zsh
 
 for f in gvimrc vimrc; do
     ln -sfv $PWD/$f $HOME/.$f
