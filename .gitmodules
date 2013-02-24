@@ -55,9 +55,6 @@
 [submodule "bundle/capslock.vim"]
 	path = bundle/capslock.vim
 	url = git://github.com/vim-scripts/capslock.vim.git
-[submodule "bundle/vim-powerline.git"]
-	path = bundle/vim-powerline.git
-	url = https://github.com/Lokaltog/vim-powerline.git
 [submodule "bundle/jellybeans"]
 	path = bundle/jellybeans
 	url = https://github.com/nanotech/jellybeans.vim
