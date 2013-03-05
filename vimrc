@@ -5,6 +5,8 @@ let mapleader=","
 filetype off
 execute pathogen#infect()
 
+set rtp+=$HOME/.powerline/powerline/bindings/vim
+
 syntax enable                     " Turn on syntax highlighting.
 filetype on
 filetype plugin indent on         " Turn on file type detection.
@@ -178,13 +180,10 @@ let python_highlight_all = 1
 let python_space_errors = 1
 autocmd FileType python setlocal expandtab autoindent foldmethod=indent shiftwidth=4 softtabstop=4 "omnifunc=pythoncomplete#Complete
 
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
-
-let ropevim_vim_completion = 1
-let ropevim_extended_complete = 1
-let g:ropevim_autoimport_modules = ["os.*","traceback"]
-imap <c-space> <C-R>=RopeCodeAssistInsertMode()<CR>
+" Jedi
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#related_names_command = "<leader>N"
 
 python << EOF
 import os
