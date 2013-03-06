@@ -1,6 +1,6 @@
 if has ("gui_macvim")
     set fuoptions=maxvert,maxhorz
-    set guifont=Menlo:h10
+    set guifont=PragmataPro:h13
     set transparency=15
 elseif has("gui_win32")
     set guifont=Consolas:h10
