@@ -112,6 +112,11 @@ nmap <leader>cc :cclose<CR>
 
 let g:Powerline_symbols = 'fancy'
 
+let g:syntastic_check_on_open=1
+let g:syntastic_python_checker="flake8"
+let g:flake8_max_line_lnegth=120
+let g:flake8_max_complexity=10
+
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
  
