@@ -70,3 +70,18 @@
 [submodule "bundle/vim-unimpaired"]
 	path = bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "bundle/vim-fish"]
+	path = bundle/vim-fish
+	url = https://github.com/aliva/vim-fish.git
+[submodule "bundle/ini-syntax-definition"]
+	path = bundle/ini-syntax-definition
+	url = https://github.com/vim-scripts/ini-syntax-definition.git
+[submodule "bundle/vim-scala"]
+	path = bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "bundle/vim-signature"]
+	path = bundle/vim-signature
+	url = https://github.com/kshenoy/vim-signature.git

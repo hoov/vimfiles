@@ -82,6 +82,11 @@ set statusline+=%-14.(%l/%L,%c%V%)\           " location
 set statusline+=%P                            " percentage of file
 
 set tags=./tags,tags,~/.extra_tags/java.tags
+"
+" Color overrides
+"let g:jellybeans_overrides = {
+"            \ 'GitGutterAdd': { 'ctermbg': '333333'},
+"            \ }
 
 colorscheme jellybeans
 
@@ -113,7 +118,7 @@ nmap <leader>cc :cclose<CR>
 let g:Powerline_symbols = 'fancy'
 
 let g:syntastic_check_on_open=1
-let g:syntastic_python_checker="flake8"
+let g:syntastic_python_checkers=["flake8"]
 let g:flake8_max_line_lnegth=120
 let g:flake8_max_complexity=10
 
@@ -149,6 +154,11 @@ set completeopt=menuone,longest,preview
 let NERDTreeIgnore=['\.rbc$', '\~$']
 map <leader>n :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen=0
+" Pop up NERDTree if no files were specified
+autocmd vimenter * if !argc() | NERDTree | endif
+" Quit Vim if only one NERDTree is left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
 
 " Opens an edit command with the path of the currently edited file filled in
 " Normal mode: <Leader>e
@@ -188,7 +198,7 @@ autocmd FileType python setlocal expandtab autoindent foldmethod=indent shiftwid
 " Jedi
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#related_names_command = "<leader>N"
+let g:jedi#usages_command = "<leader>N"
 
 python << EOF
 import os
