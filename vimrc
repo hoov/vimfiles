@@ -1,5 +1,7 @@
 set nocompatible                  " Must come first because it changes other options.
 
+set shell=/bin/bash
+
 let mapleader=","
 
 filetype off
@@ -168,9 +170,9 @@ else
     map <leader>e :e <C-R>=expand("%:p:h") . '/' <cr>
 endif
 
-" Ack
-map <Leader>a <Esc>:Ack!<CR>
-map <Leader>A <Esc>:Ack!
+" Ag -- so much better than ack
+map <Leader>a <Esc>:Ag!<CR>
+map <Leader>A <Esc>:Ag!
 
 " taglist setup
 if has('win32') || has('win64')
