@@ -1,6 +1,8 @@
 set nocompatible                  " Must come first because it changes other options.
 
-set shell=/bin/bash
+if &shell =~# 'fish$'
+    set shell=/bin/bash
+endif
 
 let mapleader=","
 
@@ -84,6 +86,11 @@ set statusline+=%-14.(%l/%L,%c%V%)\           " location
 set statusline+=%P                            " percentage of file
 
 set tags=./tags,tags,~/.extra_tags/java.tags
+
+let g:clang_library_path = '/Library/Developer/CommandLineTools/usr/lib/'
+let g:clang_complete_auto = 0
+let g:clang_complete_copen = 1
+
 "
 " Color overrides
 "let g:jellybeans_overrides = {
@@ -91,17 +98,6 @@ set tags=./tags,tags,~/.extra_tags/java.tags
 "            \ }
 
 colorscheme jellybeans
-
-" Tab mappings.
-map <leader>tt :tabnew<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>to :tabonly<cr>
-map <leader>tn :tabnext<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tl :tablast<cr>
-map <leader>tm :tabmove
 
 " ,v brings up my .vimrc
 " ,V reloads it -- making all changes active (have to save first)
